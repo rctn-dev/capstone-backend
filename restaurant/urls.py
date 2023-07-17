@@ -5,14 +5,14 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'tables', views.BookingViewSet)
 
 
 urlpatterns=[
-    path('', views.index, name='index'),
-    path('', include(router.urls)),
+    path('restaurant', views.index, name='index'),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('menu-items/', views.MenuItemsView.as_view()),
-    path('menu-items/<int:pk>', views.SingleMenuItemView.as_view()),
-    path('api-token-auth/', obtain_auth_token),
-    path('message/', views.msg),  
+    path('api/menu-items/', views.MenuItemsView.as_view()),
+    path('api/menu-items/<int:pk>', views.SingleMenuItemView.as_view()),
+    path('api/api-token-auth/', obtain_auth_token),
 ]
